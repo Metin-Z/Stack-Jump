@@ -15,18 +15,18 @@ public class FallController : MonoBehaviour
         _player = FindObjectOfType<PlayerController>();
         if (transform.parent.position.x == 7)
         {
-            collSide = -200f;
+            collSide = -250f;
         }
         else if (transform.parent.position.x == -7)
         {
-            collSide = 200f;
+            collSide = 250f;
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(_bSpawner.GetComponent<BlockSpawner>());
+            _bSpawner.GetComponent<BlockSpawner>().enabled = false;
             collision.rigidbody.AddForce(transform.right * collSide);
             collision.transform.GetComponent<Animator>().enabled = false;
             StartCoroutine(KnocbackTime());
@@ -34,9 +34,10 @@ public class FallController : MonoBehaviour
     }
     public IEnumerator KnocbackTime()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.45f);
         Instantiate(Exp, new Vector3(_player.transform.position.x, _player.transform.position.y, _player.transform.position.z), Quaternion.identity);
         Destroy(_player.gameObject);
         _canvas.retry_BTN.SetActive(true);
+        Time.timeScale = 0;
     }
 }

@@ -44,7 +44,7 @@ public class ComboController : MonoBehaviour
     public IEnumerator OColor()
     {
         yield return new WaitForSeconds(0.5f);
-        for (int i = 1; i < _blockS.SpawnedBlocks.Count; i++)
+        for (int i = 0; i < _blockS.SpawnedBlocks.Count; i++)
         {
             yield return new WaitForSeconds(0.05f);
             _blockS.SpawnedBlocks[i].GetComponent<MeshRenderer>().material.DOColor(_blockS.BaseColor, 1);

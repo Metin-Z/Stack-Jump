@@ -28,6 +28,7 @@ public class FallController : MonoBehaviour
         {
             Destroy(_bSpawner.GetComponent<BlockSpawner>());
             collision.rigidbody.AddForce(transform.right * collSide);
+            collision.transform.GetComponent<Animator>().enabled = false;
             StartCoroutine(KnocbackTime());
         }
     }

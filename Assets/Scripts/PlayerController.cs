@@ -36,6 +36,13 @@ public class PlayerController : MonoBehaviour
             IsGrounded = true;
             anim.SetBool("IsGround", true);
             collision.gameObject.GetComponent<BlockController>().enabled = false;
+            collision.gameObject.GetComponent<ComboController>().enabled = false;
+            _canvas.score++;
+        }
+        if (collision.gameObject.tag == "BaseBlock")
+        {
+            IsGrounded = true;
+            anim.SetBool("IsGround", true);
             _canvas.score++;
         }
     }
